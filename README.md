@@ -1,17 +1,17 @@
 # SlashConnecter
 
-###ChangeLog
+### ChangeLog
 
-+main.py
-    +já não é preciso chamar o auto roler sempre que o bot vai abaixo  
-    +adicionado um on_component listener
+- main.py
+    - Já não é preciso chamar o auto roler sempre que o bot vai abaixo  
+    - Adicionado um on_component listener
 
-+autoroler.py
-    +autoroler agora usa "fancy shiny buttons" (components)
-    +autoroler esta funcional para matriculas
-    +autoroler tem suporte para empresas e fainas
+- autoroler.py
+    - Autoroler agora usa "fancy shiny buttons" (components)
+    - Autoroler esta funcional para matriculas
+    - Autoroler tem suporte para empresas e fainas
 
-+others
-    +todos os comandos passaram a ser separados do main.py para não o sobrecarregar 
+- others
+    - todos os comandos passaram a ser separados do main.py para não o sobrecarregar 
 
     
