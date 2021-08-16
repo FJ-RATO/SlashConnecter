@@ -1,4 +1,5 @@
 import discord
+from discord.ext import commands
 from discord_slash import SlashCommand, SlashContext,ComponentContext
 from discord_slash.utils.manage_commands import create_choice, create_option
 from discord_slash.utils.manage_components import create_select, create_select_option, create_actionrow
@@ -23,6 +24,7 @@ async def on_ready():
 async def _ping(ctx:SlashContext):
     await ctx.send(f"Pong! ({client.latency*1000}ms)")
 
+@commands.has_permissions(administrator=True)
 @slash.slash(name="autoroler",description="summons the auto roller post",guild_ids=guild_id)
 async def _autoroler(ctx:SlashContext):
    await ctx.send("AUTOROLER", components=[create_actionrow(autoroler.matriculas_create()),create_actionrow(autoroler.atividades_create()),create_actionrow(autoroler.button_create())])
@@ -34,8 +36,12 @@ async def on_component(ctx: ComponentContext):
         await autoroler.handler(ctx,options)
         
     if(ctx.custom_id == "atividades"):
-        options =["empresas,faina"]
+        options =["empresas,aluvião,desporto"]
         await autoroler.handler(ctx,options)
-    
+
+    if(ctx.custom_id == "info_roles"):
+        await ctx.edit_origin(content="Help Sent!") #must put in autoroler
+        await ctx.author.send(embed=autoroler.info(ctx))
+
 
 client.run(code)

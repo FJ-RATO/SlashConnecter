@@ -4,12 +4,21 @@ from discord_slash.utils.manage_components import create_select, create_select_o
 
 def button_create(): 
     button = create_button(
-                style=ButtonStyle.red,
-                label="Useless Button",
-                custom_id="Exit all roles",
-                disabled= True
+                style=ButtonStyle.blue,
+                label="?",
+                custom_id="info_roles",
+                disabled= False
             )
     return button
+
+def info(ctx):
+    embed=discord.Embed(title="Auto Roler Help", description="Aqui tens a descrição em detalhe de todas as secções", color=0xffff00)
+    embed.add_field(name="Ano", value="Escolhe quais os anos dos quais queres receber notificações", inline=False)
+    embed.add_field(name="Empresas", value="Recebe acesso à longa lista de parceiros que o NEECT tem para ti", inline=False)
+    embed.add_field(name="Aluvião", value="Se estás interessado em integrar a praxe este é um role obrigatório", inline=False)
+    embed.add_field(name="Desporto", value="Se queres saber tudo dos nossos atletas ou te queres tornar em um tens aqui a oportunidade", inline=False)
+    embed.set_footer(text="Todos os aluviões devem ter o role aluvião sobre pena de represalias graves")
+    return embed
 
 def matriculas_create():
     select = create_select(
@@ -31,18 +40,23 @@ def atividades_create():
     select = create_select(
         options=[# the options in your dropdown
             create_select_option("empresas", value="empresas"),
-            create_select_option("faina", value="faina"),
+            create_select_option("aluvião", value="aluvião"),
+            create_select_option("desporto", value="desporto"),
         ],
         placeholder="Escolhe as tuas atividades",  # the placeholder text to show when no options have been chosen
         min_values=1,  # the minimum number of options a user must select
-        max_values=2,  # the maximum number of options a user can select
+        max_values=3,  # the maximum number of options a user can select
         custom_id= "atividades"
     )
     return select
 
 async def handler(ctx,options):
+    
+    #add role
     for x in ctx.selected_options:
         await ctx.author.add_roles(discord.utils.get(ctx.author.guild.roles, name = x))
+    
+    #remove role
     aux = [x for x in options if x not in ctx.selected_options]
     for x in aux:
         await ctx.author.remove_roles(discord.utils.get(ctx.author.guild.roles, name = x))
