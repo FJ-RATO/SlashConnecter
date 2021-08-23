@@ -8,6 +8,7 @@ from secret import code as code
 from secret import servers as servers
 
 import autoroler
+import eggy
 
 client = discord.Client(intents = discord.Intents.all())
 slash = SlashCommand(client, sync_commands=True)
@@ -29,6 +30,21 @@ async def _ping(ctx:SlashContext):
 async def _autoroler(ctx:SlashContext):
    await ctx.send("AUTOROLER", components=[create_actionrow(autoroler.matriculas_create()),create_actionrow(autoroler.atividades_create()),create_actionrow(autoroler.button_create())])
 
+@commands.has_permissions(administrator=True) #move to on_ready when finished
+@slash.slash(name="egg",description="starts the egg game",guild_ids=guild_id)
+async def _egg(ctx:SlashContext):
+    eggy.play.start()
+
+@commands.has_permissions(administrator=True) #move to on_ready when finished
+@slash.slash(name="revive",description="revive the egg",guild_ids=guild_id)
+async def _revive(ctx:SlashContext):
+    eggy.revive()
+
+@commands.cooldown(1, 10, commands.BucketType.user)
+@slash.slash(name="rub",description="gives heat to the egg",guild_ids=guild_id)
+async def _rub(ctx:SlashContext):
+    eggy.rub()
+
 @client.event
 async def on_component(ctx: ComponentContext):
     if(ctx.custom_id == "matriculas"):
@@ -36,7 +52,7 @@ async def on_component(ctx: ComponentContext):
         await autoroler.handler(ctx,options)
         
     if(ctx.custom_id == "atividades"):
-        options =["empresas,aluvião,desporto"]
+        options =["empresas" ,"aluvião","desporto"]
         await autoroler.handler(ctx,options)
 
     if(ctx.custom_id == "info_roles"):
