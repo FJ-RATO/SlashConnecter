@@ -25,23 +25,23 @@ async def on_ready():
 async def _ping(ctx:SlashContext):
     await ctx.send(f"Pong! ({client.latency*1000}ms)")
 
-@commands.has_permissions(administrator=True)
 @slash.slash(name="autoroler",description="summons the auto roller post",guild_ids=guild_id)
+@commands.has_permissions(administrator=True)
 async def _autoroler(ctx:SlashContext):
    await ctx.send("AUTOROLER", components=[create_actionrow(autoroler.matriculas_create()),create_actionrow(autoroler.atividades_create()),create_actionrow(autoroler.button_create())])
 
-@commands.has_permissions(administrator=True) #move to on_ready when finished
 @slash.slash(name="egg",description="starts the egg game",guild_ids=guild_id)
+@commands.has_permissions(administrator=True) #move to on_ready when finished
 async def _egg(ctx:SlashContext):
     eggy.play.start()
 
-@commands.has_permissions(administrator=True) #move to on_ready when finished
 @slash.slash(name="revive",description="revive the egg",guild_ids=guild_id)
+@commands.has_permissions(administrator=True) #move to on_ready when finished
 async def _revive(ctx:SlashContext):
     eggy.revive()
 
-@commands.cooldown(1, 10, commands.BucketType.user)
 @slash.slash(name="rub",description="gives heat to the egg",guild_ids=guild_id)
+@commands.cooldown(1, 10, commands.BucketType.user)
 async def _rub(ctx:SlashContext):
     eggy.rub()
 
