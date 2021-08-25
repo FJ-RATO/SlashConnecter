@@ -9,6 +9,7 @@ from secret import servers as servers
 
 import autoroler
 import eggy
+import member_join
 
 client = discord.Client(intents = discord.Intents.all())
 slash = SlashCommand(client, sync_commands=True)
@@ -18,7 +19,6 @@ guild_id = servers
 @client.event
 async def on_ready():
     print("SlashConnecter is online")
-
 
 #Test slash ping command
 @slash.slash(name="ping",description="Reply pong",guild_ids=guild_id)
@@ -41,9 +41,13 @@ async def _revive(ctx:SlashContext):
     eggy.revive()
 
 @slash.slash(name="rub",description="gives heat to the egg",guild_ids=guild_id)
-@commands.cooldown(1, 10, commands.BucketType.user)
+@commands.cooldown(1, 10, commands.BucketType.user) #cooldown can be seconds minutes or hours
 async def _rub(ctx:SlashContext):
     eggy.rub()
+
+@client.event()
+async def on_member_join(member):
+    member_join.welcome(member)    
 
 @client.event
 async def on_component(ctx: ComponentContext):
