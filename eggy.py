@@ -7,7 +7,6 @@ import json
 def read():
     file = open("./egg.json", "r")
     egg = json.load(file)
-    print(egg)
     file.close()
     return egg
 
@@ -21,7 +20,13 @@ async def play():
     egg = read()
     egg["heat"] -= 10
     write(egg)
+    temp = egg["heat"]
 
+    if temp <= 0:
+        await client.change_presence(activity=discord.Game(name="egg is dead"))
+    else:
+        await client.change_presence(activity=discord.Game(name="egg is at {temp}"))
+    
 def rub():
     egg = read()
     egg["heat"] += 10

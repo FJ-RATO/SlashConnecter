@@ -33,7 +33,7 @@ async def _autoroler(ctx:SlashContext):
 @slash.slash(name="egg",description="starts the egg game",guild_ids=guild_id)
 @commands.has_permissions(administrator=True) #move to on_ready when finished
 async def _egg(ctx:SlashContext):
-    eggy.play.start()
+    eggy.play.start(client)
 
 @slash.slash(name="revive",description="revive the egg",guild_ids=guild_id)
 @commands.has_permissions(administrator=True) #move to on_ready when finished
