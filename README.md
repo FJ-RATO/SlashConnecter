@@ -4,8 +4,9 @@
 - [Installation](https://github.com/FJ-RATO/SlashConnecter#installation)
 - [ChangeLog](https://github.com/FJ-RATO/SlashConnecter#changelog)
 - [Programmer's Note](https://github.com/FJ-RATO/SlashConnecter#programmers-note)
+- [Images](https://github.com/FJ-RATO/SlashConnecter#images)
 
-### Installation
+## Installation
 1. Cria um ambiente virtual
 ```
 python3 -m venv venv
@@ -19,7 +20,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### ChangeLog
+## ChangeLog
 
 - main.py
     - Já não é preciso chamar o auto roler sempre que o bot vai abaixo  
@@ -44,5 +45,10 @@ pip install -r requirements.txt
 - others
     - Todos os comandos passaram a ser separados do main.py para não o sobrecarregar 
 
-### Programmer's note
+## Programmer's note
 A implementação do member_join.py é provisoria a ideia original é que um utilizador possa se autenticar no servidor apenas usando o bot assim evitando mais um trabalho para os mods
+
+## Images
+
+### Lista de comandos
+![Lista de comandos](https://imgur.com/3tqeB4I)
