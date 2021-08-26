@@ -10,4 +10,4 @@ async def welcome(member):
                 label="priority request",
                 disabled= False
             )
-    await member.send("Se estas impaciente podes sempre carregar aqui",components=[create_actionrow(button_faster)])
+    await member.send("Se estas impaciente podes sempre carregar aqui (1/1000 vezes funciona)",components=[create_actionrow(button_faster)])
