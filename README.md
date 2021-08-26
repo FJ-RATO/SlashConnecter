@@ -1,5 +1,23 @@
 # SlashConnecter
 
+## Index
+- [Installation](https://github.com/FJ-RATO/SlashConnecter#installation)
+- [ChangeLog](https://github.com/FJ-RATO/SlashConnecter#changelog)
+- [Programmer's Note](https://github.com/FJ-RATO/SlashConnecter#programmers-note)
+###Installation
+1. Cria um ambiente virtual
+```
+python3 -m venv venv
+```
+2. Ativa o ambiente virtual
+```
+source venv/bin/activate
+```
+3. Instala os requisitos
+```
+pip install -r requirements.txt
+```
+
 ### ChangeLog
 
 - main.py
