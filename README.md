@@ -51,4 +51,4 @@ A implementação do member_join.py é provisoria a ideia original é que um uti
 ## Images
 
 ### Lista de comandos
-![Lista de comandos](https://imgur.com/3tqeB4I)
+![Lista de comandos](https://i.imgur.com/3tqeB4I.png)
