@@ -16,7 +16,7 @@ def write(egg):
     file.close()
 
 @tasks.loop(seconds = 10)
-async def play():
+async def play(client):
     egg = read()
     egg["heat"] -= 10
     write(egg)
@@ -25,7 +25,8 @@ async def play():
     if temp <= 0:
         await client.change_presence(activity=discord.Game(name="egg is dead"))
     else:
-        await client.change_presence(activity=discord.Game(name="egg is at {temp}"))
+        text = "egg is at " + str(temp) +"º"
+        await client.change_presence(activity=discord.Game(name= text))
     
 def rub():
     egg = read()
