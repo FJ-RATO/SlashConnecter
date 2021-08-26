@@ -1,4 +1,5 @@
 # SlashConnecter
+![connecter](https://i.imgur.com/BbhmMqj.png)
 
 ## Index
 - [Installation](https://github.com/FJ-RATO/SlashConnecter#installation)
