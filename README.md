@@ -52,3 +52,15 @@ A implementação do member_join.py é provisoria a ideia original é que um uti
 
 ### Lista de comandos
 ![Lista de comandos](https://i.imgur.com/3tqeB4I.png)
+
+### Auto Roler
+![Auto Roler](https://i.imgur.com/wo6BK0I.png)
+
+### Mensagem de ajuda do Auto Roler
+![Mensagem de ajuda do Auto Roler](https://i.imgur.com/HNpJlC0.png)
+
+### Mensagem de boas vindas
+![Mensagem de boas vindas](https://i.imgur.com/24ksBxo.png)
+
+### Status do jogo
+![Status do jogo](https://i.imgur.com/Bxu0z74.png)
