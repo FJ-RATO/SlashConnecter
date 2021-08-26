@@ -45,9 +45,9 @@ async def _revive(ctx:SlashContext):
 async def _rub(ctx:SlashContext):
     eggy.rub()
 
-@client.event()
+@client.event
 async def on_member_join(member):
-    member_join.welcome(member)    
+    await member_join.welcome(member)    
 
 @client.event
 async def on_component(ctx: ComponentContext):
