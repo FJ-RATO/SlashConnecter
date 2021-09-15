@@ -18,7 +18,7 @@ def write(egg):
 @tasks.loop(seconds = 10)
 async def play(client):
     egg = read()
-    egg["heat"] -= 10
+    egg["heat"] -= 1
     write(egg)
     temp = egg["heat"]
 
@@ -28,9 +28,9 @@ async def play(client):
         text = "egg is at " + str(temp) +"º"
         await client.change_presence(activity=discord.Game(name= text))
     
-def rub():
+def heat():
     egg = read()
-    egg["heat"] += 10
+    egg["heat"] += 1
     write(egg)
 
 def revive():
