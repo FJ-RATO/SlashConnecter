@@ -10,6 +10,7 @@ from secret import servers as servers
 import autoroler
 import eggy
 import member_join
+import curriculum
 
 client = discord.Client(intents = discord.Intents.all())
 slash = SlashCommand(client, sync_commands=True)
@@ -20,7 +21,6 @@ guild_id = servers
 async def on_ready():
     print("SlashConnecter is online")
 
-#Test slash ping command
 @slash.slash(name="ping",description="Reply pong",guild_ids=guild_id)
 async def _ping(ctx:SlashContext):
     await ctx.send(f"Pong! ({client.latency*1000}ms)")
@@ -30,8 +30,8 @@ async def _ping(ctx:SlashContext):
 async def _autoroler(ctx:SlashContext):
    await ctx.send("AUTOROLER", components=[create_actionrow(autoroler.matriculas_create()),create_actionrow(autoroler.atividades_create()),create_actionrow(autoroler.button_create())])
 
-@slash.slash(name="egg",description="starts the egg game",guild_ids=guild_id)
-@commands.has_permissions(administrator=True) #move to on_ready when finished
+@slash.slash(name="egg",description="egg start|revive (starts or revives the game)",guild_ids=guild_id)
+@commands.has_permissions(administrator=True)
 async def _egg(ctx:SlashContext, arg0):
     if arg0 == "start":
         eggy.play.start(client)
@@ -40,7 +40,7 @@ async def _egg(ctx:SlashContext, arg0):
 
 @client.event
 async def on_message(message):
-    if message.channel.id == 821134781839573032:
+    if message.channel.id == 821134781839573032: #canal viveiro, se alguem escrever neste canal o ovo recebe x pontos
         eggy.heat()
 
 @client.event
