@@ -30,6 +30,7 @@ pip install -r requirements.txt
     - Adicionado medidas de segurança a comandos administrativos
     - Adicionado medidas anti spam a comandos comunitarios
     - Comando egg agora tem argumentos em vez de existir dois comandos separados
+    - Adicionado um comando para obter o guia de sobrevivencia
 
 - autoroler.py
     - Autoroler agora usa "fancy shiny buttons" (components)
