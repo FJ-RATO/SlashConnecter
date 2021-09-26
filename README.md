@@ -3,7 +3,7 @@
 
 ## Index
 - [Installation](https://github.com/FJ-RATO/SlashConnecter#installation)
-- [ChangeLog](https://github.com/FJ-RATO/SlashConnecter#changelog)
+- [Features](https://github.com/FJ-RATO/SlashConnecter#features)
 - [Programmer's Note](https://github.com/FJ-RATO/SlashConnecter#programmers-note)
 - [Images](https://github.com/FJ-RATO/SlashConnecter#images)
 
@@ -21,7 +21,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## ChangeLog
+## Features
 
 - main.py
     - Já não é preciso chamar o auto roler sempre que o bot vai abaixo  
@@ -44,13 +44,13 @@ pip install -r requirements.txt
     - Commando rub foi trocado por um listener no canal viveiro
 
 - member_join.py
-    - adicionado um greater para dar mais informação os novos utilizadore
+    - adicionado um greater para dar mais informação aos novos utilizadores
 
 - others
-    - Todos os comandos passaram a ser separados do main.py para não o sobrecarregar 
+    - Todos os comandos passaram a ser separados do main.py para não o sobrecarregar em texto
 
 ## Programmer's note
-A implementação do member_join.py é provisoria a ideia original é que um utilizador possa se autenticar no servidor apenas usando o bot assim evitando mais um trabalho para os mods
+A implementação do member_join.py é permanente uma vez que o proprio discord vai implementar questionários de inscrição o que tornava a implemetação planeada irrelevante.
 
 ## Images
 

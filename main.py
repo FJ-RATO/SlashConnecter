@@ -12,7 +12,6 @@ from secret import servers as servers
 import autoroler
 import eggy
 import member_join
-import survivor
 
 client = discord.Client(intents = discord.Intents.all())
 slash = SlashCommand(client, sync_commands=True)
@@ -69,7 +68,7 @@ async def on_component(ctx: ComponentContext):
         await autoroler.handler(ctx,options)
         
     if(ctx.custom_id == "atividades"):
-        options =["empresas" ,"aluvião","desporto"]
+        options =["empresas" ,"TaçaUa","desporto"]
         await autoroler.handler(ctx,options)
 
     if(ctx.custom_id == "info_roles"):

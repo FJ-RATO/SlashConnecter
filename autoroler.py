@@ -16,7 +16,7 @@ def info(ctx):
     embed.add_field(name="Ano", value="Escolhe quais os anos dos quais queres receber notificações", inline=False)
     embed.add_field(name="Empresas", value="Recebe acesso à longa lista de parceiros que o NEECT tem para ti", inline=False)
     embed.add_field(name="Aluvião", value="Se estás interessado em integrar a praxe este é um role obrigatório", inline=False)
-    embed.add_field(name="Desporto", value="Se queres saber tudo dos nossos atletas ou te queres tornar em um tens aqui a oportunidade", inline=False)
+    embed.add_field(name="TaçaUa", value="Se queres saber tudo dos nossos atletas ou te queres tornar em um tens aqui a oportunidade", inline=False)
     embed.set_footer(text="Todos os aluviões devem ter o role aluvião sobre pena de represalias graves")
     return embed
 
@@ -41,7 +41,7 @@ def atividades_create():
         options=[# the options in your dropdown
             create_select_option("empresas", value="empresas"),
             create_select_option("aluvião", value="aluvião"),
-            create_select_option("desporto", value="desporto"),
+            create_select_option("TaçaUa", value="TaçaUa"),
         ],
         placeholder="Escolhe as tuas atividades",  # the placeholder text to show when no options have been chosen
         min_values=1,  # the minimum number of options a user must select
