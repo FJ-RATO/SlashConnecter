@@ -68,7 +68,7 @@ async def on_component(ctx: ComponentContext):
         await autoroler.handler(ctx,options)
         
     if(ctx.custom_id == "atividades"):
-        options =["empresas" ,"TaçaUa","desporto"]
+        options =["empresas","TaçaUa","aluvião","Antigo Aluno"]
         await autoroler.handler(ctx,options)
 
     if(ctx.custom_id == "info_roles"):

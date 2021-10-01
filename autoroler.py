@@ -42,10 +42,11 @@ def atividades_create():
             create_select_option("empresas", value="empresas"),
             create_select_option("aluvião", value="aluvião"),
             create_select_option("TaçaUa", value="TaçaUa"),
+            create_select_option("Antigo Aluno", value="Antigo Aluno"),
         ],
-        placeholder="Escolhe as tuas atividades",  # the placeholder text to show when no options have been chosen
+        placeholder="Outros Roles",  # the placeholder text to show when no options have been chosen
         min_values=1,  # the minimum number of options a user must select
-        max_values=3,  # the maximum number of options a user can select
+        max_values=4,  # the maximum number of options a user can select
         custom_id= "atividades"
     )
     return select
