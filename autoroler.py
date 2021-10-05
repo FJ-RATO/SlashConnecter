@@ -2,11 +2,20 @@ import discord
 from discord_slash.model import ButtonStyle
 from discord_slash.utils.manage_components import create_select, create_select_option, create_actionrow,create_button
 
-def button_create(): 
+def button_create_help(): 
     button = create_button(
                 style=ButtonStyle.blue,
                 label="?",
                 custom_id="info_roles",
+                disabled= False
+            )
+    return button
+
+def button_create_reset(): 
+    button = create_button(
+                style=ButtonStyle.red,
+                label="RESET",
+                custom_id="reset",
                 disabled= False
             )
     return button
@@ -57,8 +66,16 @@ async def handler(ctx,options):
     for x in ctx.selected_options:
         await ctx.author.add_roles(discord.utils.get(ctx.author.guild.roles, name = x))
     
-    #remove role
-    aux = [x for x in options if x not in ctx.selected_options]
+    #remove role 
+    #[BUG] WHILE THE LIST SELECTION BUG ENDURES THIS WILL BE COMMENTED
+    #aux = [x for x in options if x not in ctx.selected_options]
+    #for x in aux:
+    #    await ctx.author.remove_roles(discord.utils.get(ctx.author.guild.roles, name = x))
+    
+    await ctx.edit_origin(content="Roles updated!")
+
+async def reset(ctx): #patch
+    #[BUG] WHILE THE LIST SELECTION BUG ENDURES THIS WILL BE ACTIVE
+    aux = ["1º ano","2º ano","3º ano","4º ano","5º ano","empresas","TaçaUa","aluvião","Antigo Aluno"]
     for x in aux:
         await ctx.author.remove_roles(discord.utils.get(ctx.author.guild.roles, name = x))
-    await ctx.edit_origin(content="Roles updated!")

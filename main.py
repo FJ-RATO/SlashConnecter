@@ -33,7 +33,7 @@ async def _ping(ctx:SlashContext):
 @slash.slash(name="autoroler",description="Summons the auto roller post",guild_ids=guild_id)
 @commands.has_permissions(administrator=True)
 async def _autoroler(ctx:SlashContext):
-   await ctx.send("AUTOROLER", components=[create_actionrow(autoroler.matriculas_create()),create_actionrow(autoroler.atividades_create()),create_actionrow(autoroler.button_create())])
+   await ctx.send("AUTOROLER", components=[create_actionrow(autoroler.matriculas_create()),create_actionrow(autoroler.atividades_create()),create_actionrow(autoroler.button_create_help(),autoroler.button_create_reset())])
 
 @slash.slash(name="egg",description="egg start|revive (starts or revives the game)",guild_ids=guild_id)
 @commands.has_permissions(administrator=True)
@@ -74,6 +74,10 @@ async def on_component(ctx: ComponentContext):
     if(ctx.custom_id == "info_roles"):
         await ctx.edit_origin(content="Help Sent!") #must put in autoroler
         await ctx.author.send(embed=autoroler.info(ctx))
+    
+    if(ctx.custom_id == "reset"):
+        await ctx.edit_origin(content="Reseted the roles!") #must put in autoroler
+        await autoroler.reset(ctx)
 
 
 client.run(code)
