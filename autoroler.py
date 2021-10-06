@@ -67,15 +67,13 @@ async def handler(ctx,options):
         await ctx.author.add_roles(discord.utils.get(ctx.author.guild.roles, name = x))
     
     #remove role 
-    #[BUG] WHILE THE LIST SELECTION BUG ENDURES THIS WILL BE COMMENTED
-    #aux = [x for x in options if x not in ctx.selected_options]
-    #for x in aux:
-    #    await ctx.author.remove_roles(discord.utils.get(ctx.author.guild.roles, name = x))
+    aux = [x for x in options if x not in ctx.selected_options]
+    for x in aux:
+        await ctx.author.remove_roles(discord.utils.get(ctx.author.guild.roles, name = x))
     
     await ctx.edit_origin(content="Roles updated!")
 
-async def reset(ctx): #patch
-    #[BUG] WHILE THE LIST SELECTION BUG ENDURES THIS WILL BE ACTIVE
+async def reset(ctx):
     aux = ["1º ano","2º ano","3º ano","4º ano","5º ano","empresas","TaçaUa","aluvião","Antigo Aluno"]
     for x in aux:
         await ctx.author.remove_roles(discord.utils.get(ctx.author.guild.roles, name = x))

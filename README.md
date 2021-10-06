@@ -51,7 +51,6 @@ pip install -r requirements.txt
 
 ## Programmer's note
 A implementação do member_join.py é permanente uma vez que o proprio discord vai implementar questionários de inscrição o que tornava a implemetação planeada irrelevante.
-Existe um BUG conhecido no autoroler em que só é possivel selecionar um item de cada vez nas listas, para devolver alguma funcionalidade foi adicionado o botão de reset roles e foi retirado a funcionlidade de retirar roles automaticamente
 
 ## Images
 
