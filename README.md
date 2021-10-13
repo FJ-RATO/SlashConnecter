@@ -44,7 +44,11 @@ pip install -r requirements.txt
     - Commando rub foi trocado por um listener no canal viveiro
 
 - member_join.py
-    - adicionado um greater para dar mais informação aos novos utilizadores
+    - Adicionado um greater para dar mais informação aos novos utilizadores
+
+- empresas.py
+    - Adicionado o autobuilder
+    - Autobuilder cria um role um text-channel e um voice channel com o nome do argumento na categoria empresas
 
 - others
     - Todos os comandos passaram a ser separados do main.py para não o sobrecarregar em texto

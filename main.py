@@ -12,6 +12,7 @@ from secret import servers as servers
 import autoroler
 import eggy
 import member_join
+import empresas
 
 client = discord.Client(intents = discord.Intents.all())
 slash = SlashCommand(client, sync_commands=True)
@@ -43,10 +44,16 @@ async def _egg(ctx:SlashContext, arg0):
     if arg0 == "revive":
         eggy.revive()
 
-@slash.slash(name="survive",description="Sends survior guide by PM", guild_ids=guild_id)
-@commands.cooldown(1,60,BucketType.user) #one use every 60 sec's by user
-async def _survive(ctx:SlashContext):
-    await ctx.author.send(file=File("PATH HERE"))
+#@slash.slash(name="survive",description="Sends survior guide by PM", guild_ids=guild_id)
+#@commands.cooldown(1,60,BucketType.user) #one use every 60 sec's by user
+#async def _survive(ctx:SlashContext):
+#    await ctx.author.send(file=File("PATH HERE"))
+
+@slash.slash(name="autobuilder",description="Creates a role, text channel, voice channel, post channel in Empresas",guild_ids=guild_id)
+@commands.has_permissions(administrator=True)
+async def _autobuilder(ctx:SlashContext,name):
+    await empresas.create(ctx,name)
+
 
 ##################
 # EVENT LISTENER #

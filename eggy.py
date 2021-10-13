@@ -15,7 +15,7 @@ def write(egg): #escreve os status do roler
     json.dump(egg,file)
     file.close()
 
-@tasks.loop(seconds = 10) #loop de jogo
+@tasks.loop(seconds = 60) #loop de jogo
 async def play(client): 
     egg = read()
     egg["heat"] -= 1 #pontos decrementados a cada loop
