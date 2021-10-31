@@ -7,7 +7,7 @@ async def create(ctx,name):
     GUILD = ctx.guild
     ROLE = await GUILD.create_role(name=name)
     CATEGORY = discord.utils.get(ctx.guild.channels, name="EMPRESAS")
-    CT = discord.utils.get(ctx.guild.roles, name="CT")
+    CT = discord.utils.get(ctx.guild.roles, name="ct")
     NEECT = discord.utils.get(ctx.guild.roles, name="NEECT")
 
     overwrites = {
