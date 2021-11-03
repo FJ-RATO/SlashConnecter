@@ -37,3 +37,8 @@ def revive(): #função de resurrect
     egg = read()
     egg["heat"] = 100
     write(egg)
+
+def kill():
+    egg = read()
+    egg["heat"] = 0
+    write(egg)

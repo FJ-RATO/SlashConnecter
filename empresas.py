@@ -6,7 +6,6 @@ async def create(ctx,name):
 
     GUILD = ctx.guild
     ROLE = await GUILD.create_role(name=name)
-    CATEGORY = discord.utils.get(ctx.guild.channels, name="EMPRESAS")
     CT = discord.utils.get(ctx.guild.roles, name="ct")
     NEECT = discord.utils.get(ctx.guild.roles, name="NEECT")
 
@@ -22,9 +21,10 @@ async def create(ctx,name):
     NEECT: discord.PermissionOverwrite(read_messages=True)
     }
     
-    await GUILD.create_text_channel(name + "-forum",category = CATEGORY,overwrites= overwrites)
-    await GUILD.create_voice_channel(name + "-video",category = CATEGORY,overwrites= overwrites)
-    await GUILD.create_voice_channel(name + "-admin",category = CATEGORY,overwrites= overwrites_private)
+    category = await GUILD.create_category_channel(name)
+    await GUILD.create_text_channel(name + "-forum",category = category,overwrites= overwrites)
+    await GUILD.create_voice_channel(name + "-video",category = category,overwrites= overwrites)
+    await GUILD.create_voice_channel(name + "-admin",category = category,overwrites= overwrites_private)
     await ctx.send("all done")
 
     

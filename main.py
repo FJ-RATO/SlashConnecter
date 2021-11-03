@@ -43,6 +43,8 @@ async def _egg(ctx:SlashContext, arg0):
         eggy.play.start(client)
     if arg0 == "revive":
         eggy.revive()
+    if arg0 == "kill":
+        eggy.kill()
 
 #@slash.slash(name="survive",description="Sends survior guide by PM", guild_ids=guild_id)
 #@commands.cooldown(1,60,BucketType.user) #one use every 60 sec's by user
