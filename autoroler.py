@@ -20,7 +20,7 @@ def button_create_reset():
             )
     return button
 
-def info(ctx):
+def info()
     embed=discord.Embed(title="Auto Roler Help", description="Aqui tens a descrição em detalhe de todas as secções", color=0xffff00)
     embed.add_field(name="Ano", value="Escolhe quais os anos dos quais queres receber notificações", inline=False)
     embed.add_field(name="Empresas", value="Recebe acesso à longa lista de parceiros que o NEECT tem para ti", inline=False)

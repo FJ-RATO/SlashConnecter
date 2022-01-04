@@ -82,7 +82,7 @@ async def on_component(ctx: ComponentContext):
 
     if(ctx.custom_id == "info_roles"):
         await ctx.edit_origin(content="Help Sent!") #must put in autoroler
-        await ctx.author.send(embed=autoroler.info(ctx))
+        await ctx.author.send(embed=autoroler.info())
     
     if(ctx.custom_id == "reset"):
         await ctx.edit_origin(content="Reseted the roles!") #must put in autoroler
