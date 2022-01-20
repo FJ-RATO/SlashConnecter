@@ -31,6 +31,14 @@ async def on_ready():
 async def _ping(ctx:SlashContext):
     await ctx.send(f"Pong! ({client.latency*1000}ms)")
 
+@slash.slash(name="tag",description="tags the role specificied in the arguemnt")
+async def _tag(ctx:SlashContext, role):
+    r = discord.utils.get(ctx.author.guild.roles, name = role)
+    if r in ctx.author.roles:
+        await ctx.send(r.mention)
+    else:
+       await ctx.author.send("You do not have the role {r.name}")
+
 @slash.slash(name="autoroler",description="Summons the auto roller post",guild_ids=guild_id)
 @commands.has_permissions(administrator=True)
 async def _autoroler(ctx:SlashContext):
