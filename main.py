@@ -39,8 +39,4 @@ async def _autoroler(ctx):
     await ctx.send("Autoroler Menu",view=autoroler.Menu())
 
 
-
-
-
-
 client.run(CODE)
