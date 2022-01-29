@@ -1,23 +1,48 @@
 import nextcord
 
-class ButtonHelp(nextcord.ui.View):
+class Actividades(nextcord.ui.Select):
+    def __init__(self):
+        actividades = [
+            nextcord.SelectOption(label="aluvião"),
+            nextcord.SelectOption(label="Taça UA"),
+            nextcord.SelectOption(label="Antigo Aluno")
+        ]
+        super().__init__(placeholder="Escolhe os tuas atividades", min_values=1, max_values=3, options=actividades)
+    async def callback(self, interaction: nextcord.Interaction):
+        print(f"{self.values}")
+
+class Anos(nextcord.ui.Select):
+    def __init__(self):
+        anos = [
+            nextcord.SelectOption(label="1º ano"),
+            nextcord.SelectOption(label="2º ano"),
+            nextcord.SelectOption(label="3º ano"),
+            nextcord.SelectOption(label="4º ano"),
+            nextcord.SelectOption(label="5º ano"),
+        ]
+        super().__init__(placeholder="Escolhe os teus anos", min_values=1, max_values=5, options=anos)
+    async def callback(self, interaction: nextcord.Interaction):
+        print(f"{self.values}")
+
+class Reset(nextcord.ui.Button):
+    def __init__(self):
+        super().__init__(custom_id= "autoroler_reset", label = "RESET", style = nextcord.ButtonStyle.red)
+    async def callback(self, interaction:nextcord.Interaction):
+        print("reset")
+
+class Help(nextcord.ui.Button):
+    def __init__(self):
+        super().__init__(custom_id= "autoroler_help", label = "?", style= nextcord.ButtonStyle.blurple)
+    async def callback(self, interaction: nextcord.Interaction):
+        print("help")
+
+class Menu(nextcord.ui.View):
     def __init__(self):
         super().__init__()
         self.value = None
+        self.add_item(Actividades())
+        self.add_item(Anos())
+        self.add_item(Help())
+        self.add_item(Reset())
         
-    @nextcord.ui.button(
-        custom_id= "autoroler_help",
-        label = "?",
-        style = nextcord.ButtonStyle.primary
-    )
-    async def autorolerhelp(self, button: nextcord.ui.button, interaction:nextcord.Interaction):
-        print("help")
 
-
-    @nextcord.ui.button(
-        custom_id= "autoroler_reset",
-        label = "RESET",
-        style = nextcord.ButtonStyle.red
-    )
-    async def autorolerreset(self, button: nextcord.ui.button, interaction:nextcord.Interaction):
-        print("reset")
