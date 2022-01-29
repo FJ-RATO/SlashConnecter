@@ -10,7 +10,13 @@ class Actividades(nextcord.ui.Select):
         ]
         super().__init__(placeholder="Escolhe os tuas atividades", min_values=1, max_values=3, options=actividades)
     async def callback(self, interaction: nextcord.Interaction):
-        print(f"{self.values}")
+        selected = self.values
+        for x in selected:
+            await interaction.user.add_roles(nextcord.utils.get(interaction.guild.roles, name=x)) #add roles
+        not_selected = [x.label for x in self.options if not x.label in selected]
+
+        for x in not_selected:
+            await interaction.user.remove_roles(nextcord.utils.get(interaction.guild.roles, name=x)) #removeroles
 
 class Anos(nextcord.ui.Select):
     def __init__(self):
@@ -35,13 +41,21 @@ class Reset(nextcord.ui.Button):
     def __init__(self):
         super().__init__(custom_id= "autoroler_reset", label = "RESET", style = nextcord.ButtonStyle.red)
     async def callback(self, interaction:nextcord.Interaction):
-        print("reset")
+        aux = ["1º ano","2º ano","3º ano","4º ano","5º ano","TaçaUa","aluvião","Antigo Aluno"]
+        for x in aux:
+            await interaction.user.remove_roles(nextcord.utils.get(interaction.guild.roles, name=x))
 
 class Help(nextcord.ui.Button):
     def __init__(self):
         super().__init__(custom_id= "autoroler_help", label = "?", style= nextcord.ButtonStyle.blurple)
     async def callback(self, interaction: nextcord.Interaction):
-        print("help")
+        embed=nextcord.Embed(title="Auto Roler Help", description="Aqui tens a descrição em detalhe de todas as secções", color=0xffff00)
+        embed.add_field(name="Ano", value="Escolhe quais os anos dos quais queres receber notificações", inline=False)
+        embed.add_field(name="Empresas", value="Recebe acesso à longa lista de parceiros que o NEECT tem para ti", inline=False)
+        embed.add_field(name="Aluvião", value="Se estás interessado em integrar a praxe este é um role obrigatório", inline=False)
+        embed.add_field(name="TaçaUa", value="Se queres saber tudo dos nossos atletas ou te queres tornar em um tens aqui a oportunidade", inline=False)
+        embed.set_footer(text="Todos os aluviões devem ter o role aluvião sobre pena de represalias graves")
+        await interaction.user.send(embed=embed)
 
 class Menu(nextcord.ui.View):
     def __init__(self):
