@@ -40,8 +40,8 @@ class Menu(nextcord.ui.View):
     def __init__(self):
         super().__init__()
         self.value = None
-        self.add_item(Actividades())
         self.add_item(Anos())
+        self.add_item(Actividades())
         self.add_item(Help())
         self.add_item(Reset())
         
