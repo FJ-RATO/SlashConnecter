@@ -35,8 +35,7 @@ async def _tag(ctx, role):
 @commands.has_permissions(administrator=True)
 async def _autoroler(ctx):
 #    await ctx.send("AUTOROLER", components=[nextcord.actionrow(autoroler.matriculas_create()),nextcord.actionrow(autoroler.atividades_create()),nextcord.actionrow(autoroler.button_create_help(),autoroler.button_create_reset())])
-    # await ctx.send("help",view=autoroler.ButtonHelp)
-    pass
+    await ctx.send("help",view=autoroler.ButtonHelp())
 
 
 
