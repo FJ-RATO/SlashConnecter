@@ -59,11 +59,9 @@ class Help(nextcord.ui.Button):
 
 class Menu(nextcord.ui.View):
     def __init__(self):
-        super().__init__()
+        super().__init__(timeout=None)
         self.value = None
         self.add_item(Anos())
         self.add_item(Actividades())
         self.add_item(Help())
         self.add_item(Reset())
-        
-
