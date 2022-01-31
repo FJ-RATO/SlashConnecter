@@ -4,7 +4,7 @@ from nextcord.ext import commands
 import autoroler
 # import eggy
 # import member_join
-# import empresas
+import empresas
 
 from secret import code as CODE
 from secret import servers as GUILD_IDS
@@ -36,13 +36,10 @@ async def _tag(ctx, role):
 async def _autoroler(ctx):
     await ctx.send("Autoroler Menu",view=autoroler.Menu())
 
-@client.slash_command(name="tag",description="tags the role specificied in the arguemnt")
-async def _tag(ctx, role):
-    r = nextcord.utils.get(ctx.guild.roles, name = role)
-    if r in ctx.user.roles:
-        await ctx.send(r.mention)
-    else:
-       await ctx.user.send("You do not have the role {r.name}")
+@client.slash_command(name="autobuilder",description="Creates a role, text channel, voice channel, post channel in Empresas",guild_ids=GUILD_IDS)
+@commands.has_permissions(administrator=True)
+async def _autobuilder(ctx,name):
+    await empresas.create(ctx,name)
 
 
 client.run(CODE)
