@@ -3,7 +3,7 @@ from nextcord.ext import commands
 
 import autoroler
 # import eggy
-# import member_join
+import member_join
 import empresas
 
 from secret import code as CODE
@@ -41,5 +41,12 @@ async def _autoroler(ctx):
 async def _autobuilder(ctx,name):
     await empresas.create(ctx,name)
 
+##################
+# EVENT LISTENER #
+##################
+
+@client.event
+async def on_member_join(member):
+    await member_join.welcome(member)   
 
 client.run(CODE)
