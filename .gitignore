@@ -130,3 +130,6 @@ dmypy.json
 
 #secrets
 secret.py
+
+#oldfiles
+*.old
