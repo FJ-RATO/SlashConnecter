@@ -12,28 +12,19 @@
 ```
 ./start.sh
 ```
-
 ## Features
 
 - main.py
-    ~~- Já não é preciso chamar o auto roler sempre que o bot vai abaixo~~
     - Adicionado um on_component listener
     - Adicionado um greater que escuta o discord.member_join event
     - Adicionado medidas de segurança a comandos administrativos
     - Adicionado medidas anti spam a comandos comunitarios
-    ~~- Comando egg agora tem argumentos em vez de existir dois comandos separados~~
-    ~~-Adicionado um comando para obter o guia de sobrevivencia~~
 
 - autoroler.py
     - Autoroler agora usa "fancy shiny buttons" (components)
     - Autoroler esta funcional para matriculas
     - Autoroler esta funcional para atividades
     - Autoroler agora tem um botão de help
-
-~~- eggy.py
-    - Adicionado um decorator task que cria um loop paralelo não bloqueante para executar o mini jogo
-    - Adicionado game status para evitar a criação de um comando status para demonstrar o estado do jogo
-    - Commando rub foi trocado por um listener no canal viveiro~~
 
 - member_join.py
     - Adicionado um greater para dar mais informação aos novos utilizadores
