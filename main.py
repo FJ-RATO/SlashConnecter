@@ -1,3 +1,5 @@
+import os
+
 import nextcord
 from nextcord.ext import commands
 
@@ -6,8 +8,12 @@ import autoroler
 import member_join
 import empresas
 
-from secret import code as CODE
-from secret import servers as GUILD_IDS
+#from secret import code as CODE
+#from secret import servers as GUILD_IDS
+
+CODE = os.getenv("TOKEN")
+GUILD_IDS = os.getenv("SERVERS")
+
 
 client = nextcord.Client()
 
