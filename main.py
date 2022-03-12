@@ -7,6 +7,7 @@ import autoroler
 # import eggy
 import member_join
 import empresas
+import utils
 
 from secret import code as CODE
 from secret import servers as GUILD_IDS
@@ -31,11 +32,12 @@ async def _ping(ctx):
 
 @client.slash_command(name="tag",description="tags the role specificied in the arguemnt",guild_ids=GUILD_IDS)
 async def _tag(ctx, role):
-    r = nextcord.utils.get(ctx.guild.roles, name = role)
-    if r in ctx.user.roles:
-        await ctx.send(r.mention)
-    else:
-       await ctx.user.send(f"You do not have the role {role}")
+    await utils._tag(ctx,role)
+
+# @client.slash_command(name="empresa",description="Conjunto de comandos para empresas",guild_ids=GUILD_IDS)
+# @commands.has_any_role()
+# async def _autoroler(ctx):
+#     await ctx.send("Autoroler Menu",view=autoroler.Menu())
 
 @client.slash_command(name="autoroler",description="Summons the auto roller post",guild_ids=GUILD_IDS)
 @commands.has_permissions(administrator=True)
