@@ -30,6 +30,10 @@ async def on_ready():
 async def _ping(ctx):
     await ctx.send(f"Pong! ({client.latency*1000}ms)")
 
+@client.slash_command(name="version",description="Returns the current version",guild_ids=GUILD_IDS)
+async def _version(ctx):
+    await ctx.send(f"Slashconnecter v2.0 Nextcord")
+
 @client.slash_command(name="tag",description="tags the role specificied in the arguemnt",guild_ids=GUILD_IDS)
 async def _tag(ctx, role):
     await utils._tag(ctx,role)
