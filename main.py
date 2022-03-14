@@ -20,6 +20,12 @@ client = nextcord.Client()
 
 @client.event
 async def on_ready():
+    
+    #reset the autoroler
+    autoroler_channel = client.get_channel(905436705526538263)
+    await autoroler_channel.purge(limit=1)
+    await autoroler_channel.send("Autoroler Menu",view=autoroler.Menu()) 
+
     print("SlashConnecter is online \nVersion: 2.0 PRE-ALPHA")
 
 ############
@@ -38,10 +44,9 @@ async def _version(ctx):
 async def _tag(ctx, role):
     await utils._tag(ctx,role)
 
-# @client.slash_command(name="empresa",description="Conjunto de comandos para empresas",guild_ids=GUILD_IDS)
-# @commands.has_any_role()
-# async def _autoroler(ctx):
-#     await ctx.send("Autoroler Menu",view=autoroler.Menu())
+##################
+# COMMANDS ADMIN #
+##################
 
 @client.slash_command(name="autoroler",description="Summons the auto roller post",guild_ids=GUILD_IDS)
 @commands.has_permissions(administrator=True)
@@ -52,6 +57,11 @@ async def _autoroler(ctx):
 @commands.has_permissions(administrator=True)
 async def _autobuilder(ctx,name):
     await empresas.create(ctx,name)
+
+
+#####################
+# COMMANDS EMPRESAS #
+#####################
 
 ##################
 # EVENT LISTENER #
