@@ -2,7 +2,20 @@
 
 NAME="discord_server"
 
-docker build --tag ${NAME} .
-echo "${NAME} built with sucess"
+while getopts c:n: flag
+do
+    case "${flag}" in
+        c) echo "BUILDING CACHELESS..."
+           docker build --no-cache --tag ${NAME} .
+           break
+           ;;
+	n) echo "BUILDING"
+           docker build --tag ${NAME} .
+           break
+           ;;
+    esac
+done
 
+echo "STARTING ${NAME}"
 docker run --restart unless-stopped ${NAME}
+
