@@ -22,7 +22,7 @@ client = nextcord.Client()
 async def on_ready():
     
     #reset the autoroler
-    autoroler_channel = client.get_channel(905436705526538263)
+    autoroler_channel = client.get_channel(760811656149598260)
     await autoroler_channel.purge(limit=1)
     await autoroler_channel.send("Autoroler Menu",view=autoroler.Menu()) 
 
