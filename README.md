@@ -17,6 +17,7 @@
 - main.py
     - Adicionado um on_component listener
     - Adicionado um greater que escuta o discord.member_join event
+    - Adicionado um comando para verificar a versão
     - Adicionado medidas de segurança a comandos administrativos
     - Adicionado medidas anti spam a comandos comunitarios
 
@@ -25,6 +26,7 @@
     - Autoroler esta funcional para matriculas
     - Autoroler esta funcional para atividades
     - Autoroler agora tem um botão de help
+    - Autoroler já não necessita de ser inicializado sempre que o bot "morre"
 
 - member_join.py
     - Adicionado um greater para dar mais informação aos novos utilizadores
@@ -37,7 +39,8 @@
     - Todos os comandos passaram a ser separados do main.py para não o sobrecarregar em texto
 
 ## Programmer's note
-Como o bot agora está num docker container, sempre que o host for a abaixo (falta de internet ou eletricidade), ao voltar a ter condições para funcionar o serviço tambem volta a ser incilizado.
+Como o bot agora está num docker container, sempre que o host for a abaixo (falta de internet ou eletricidade), ao voltar a ter condições para funcionar o serviço tambem volta a ser incilizado.  
+
 
 ## Images
 
@@ -55,3 +58,8 @@ Como o bot agora está num docker container, sempre que o host for a abaixo (fal
 
 ### Status do jogo
 ![Status do jogo](https://i.imgur.com/Bxu0z74.png)
+
+## Future Work
+É do meu interesse criar uma maneira de gerar snapshots de um servidor permitindo recuperar de um ataque.
+Isto seria criando uma framework de onde o bot depois possa reconstruir todo o servidor.
+Não sei ainda como se faria para recuperar as mensagens.

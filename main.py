@@ -26,7 +26,7 @@ async def on_ready():
     await autoroler_channel.purge(limit=1)
     await autoroler_channel.send("Autoroler Menu",view=autoroler.Menu()) 
 
-    print("SlashConnecter is online \nVersion: 2.0 PRE-ALPHA")
+    print("SlashConnecter is online \nVersion: 2.0.1 PRE-ALPHA")
 
 ############
 # COMMANDS #
