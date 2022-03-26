@@ -133,3 +133,4 @@ secret.py
 
 #oldfiles
 *.old
+*.save
