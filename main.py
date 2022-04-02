@@ -26,8 +26,18 @@ async def on_ready():
         autoroler_channel = client.get_channel(760811656149598260)
         await autoroler_channel.purge(limit=1)
         await autoroler_channel.send("Autoroler Menu",view=autoroler.Menu())
+        print("Autoroler reset: SUCCESS")
     except:
         print("Autoroler reset: FAILED\n(Is the id channel correct?)\n")
+
+    #reset the game
+    try:
+        market_channel = client.get_channel()
+        await market_channel.purge(limit=1)
+        await market_channel.send("Autoroler Menu",view=autoroler.Menu())
+        print("Game reset: SUCCESS")
+    except:
+        print("Game reset: FAILED\n(Is the id channel correct?)\n")
 
     print("SlashConnecter is online \nVersion: 2.0.1 PRE-ALPHA")
 
@@ -47,6 +57,10 @@ async def _version(ctx):
 async def _tag(ctx, role):
     await utils._tag(ctx,role)
 
+@client.slash_command(name="game",description="Game handler, go to game channel for more ingo",guild_ids=GUILD_IDS)
+async def _game(ctx,option):
+    pass
+
 ##################
 # COMMANDS ADMIN #
 ##################
@@ -61,10 +75,13 @@ async def _autoroler(ctx):
 async def _autobuilder(ctx,name):
     await empresas.create(ctx,name)
 
+####################
+# MESSAGE COMMANDS #
+####################
 
-@client.message_command(name="test",guild_ids=GUILD_IDS)
-async def _test(ctx,name):
-    print("hello")
+#@client.message_command(name="test",guild_ids=GUILD_IDS)
+#async def _test(ctx,name):
+#    print("hello")
 
 #####################
 # COMMANDS EMPRESAS #
