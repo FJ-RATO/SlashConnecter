@@ -22,9 +22,12 @@ client = nextcord.Client()
 async def on_ready():
     
     #reset the autoroler
-    autoroler_channel = client.get_channel(760811656149598260)
-    await autoroler_channel.purge(limit=1)
-    await autoroler_channel.send("Autoroler Menu",view=autoroler.Menu()) 
+    try:
+        autoroler_channel = client.get_channel(760811656149598260)
+        await autoroler_channel.purge(limit=1)
+        await autoroler_channel.send("Autoroler Menu",view=autoroler.Menu())
+    except:
+        print("Autoroler reset: FAILED\n(Is the id channel correct?)\n")
 
     print("SlashConnecter is online \nVersion: 2.0.1 PRE-ALPHA")
 
@@ -58,6 +61,10 @@ async def _autoroler(ctx):
 async def _autobuilder(ctx,name):
     await empresas.create(ctx,name)
 
+
+@client.message_command(name="test",guild_ids=GUILD_IDS)
+async def _test(ctx,name):
+    print("hello")
 
 #####################
 # COMMANDS EMPRESAS #
