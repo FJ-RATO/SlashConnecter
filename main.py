@@ -1,100 +1,74 @@
-import discord
-from discord.ext import commands
-from discord.ext.commands.cooldowns import BucketType
-from discord.file import File
-from discord_slash import SlashCommand, SlashContext,ComponentContext
-from discord_slash.utils.manage_commands import create_choice, create_option
-from discord_slash.utils.manage_components import create_select, create_select_option, create_actionrow
+import os
 
-from secret import code as code
-from secret import servers as servers
+import nextcord
+from nextcord.ext import commands
 
 import autoroler
-import eggy
+# import eggy
 import member_join
 import empresas
+import utils
 
-client = discord.Client(intents = discord.Intents.all())
-slash = SlashCommand(client, sync_commands=True)
+from secret import code as CODE
+from secret import servers as GUILD_IDS
 
-guild_id = servers
+#CODE = os.getenv("TOKEN")
+#GUILD_IDS = os.getenv("SERVERS")
+
+
+client = nextcord.Client()
 
 @client.event
 async def on_ready():
-    print("SlashConnecter is online")
+    
+    #reset the autoroler
+    autoroler_channel = client.get_channel(760811656149598260)
+    await autoroler_channel.purge(limit=1)
+    await autoroler_channel.send("Autoroler Menu",view=autoroler.Menu()) 
+
+    print("SlashConnecter is online \nVersion: 2.0.1 PRE-ALPHA")
 
 ############
 # COMMANDS #
 ############
 
-@slash.slash(name="ping",description="Reply pong",guild_ids=guild_id)
-async def _ping(ctx:SlashContext):
+@client.slash_command(name="ping",description="Reply pong",guild_ids=GUILD_IDS)
+async def _ping(ctx):
     await ctx.send(f"Pong! ({client.latency*1000}ms)")
 
-@slash.slash(name="tag",description="tags the role specificied in the arguemnt")
-async def _tag(ctx:SlashContext, role):
-    r = discord.utils.get(ctx.author.guild.roles, name = role)
-    if r in ctx.author.roles:
-        await ctx.send(r.mention)
-    else:
-       await ctx.author.send("You do not have the role {r.name}")
+@client.slash_command(name="version",description="Returns the current version",guild_ids=GUILD_IDS)
+async def _version(ctx):
+    await ctx.send(f"Slashconnecter v2.0 Nextcord")
 
-@slash.slash(name="autoroler",description="Summons the auto roller post",guild_ids=guild_id)
+@client.slash_command(name="tag",description="tags the role specificied in the arguemnt",guild_ids=GUILD_IDS)
+async def _tag(ctx, role):
+    await utils._tag(ctx,role)
+
+##################
+# COMMANDS ADMIN #
+##################
+
+@client.slash_command(name="autoroler",description="Summons the auto roller post",guild_ids=GUILD_IDS)
 @commands.has_permissions(administrator=True)
-async def _autoroler(ctx:SlashContext):
-   await ctx.send("AUTOROLER", components=[create_actionrow(autoroler.matriculas_create()),create_actionrow(autoroler.atividades_create()),create_actionrow(autoroler.button_create_help(),autoroler.button_create_reset())])
+async def _autoroler(ctx):
+    await ctx.send("Autoroler Menu",view=autoroler.Menu())
 
-@slash.slash(name="egg",description="egg start|revive (starts or revives the game)",guild_ids=guild_id)
+@client.slash_command(name="autobuilder",description="Creates a role, text channel, voice channel, post channel in Empresas",guild_ids=GUILD_IDS)
 @commands.has_permissions(administrator=True)
-async def _egg(ctx:SlashContext, arg0):
-    if arg0 == "start":
-        eggy.play.start(client)
-    if arg0 == "revive":
-        eggy.revive()
-    if arg0 == "kill":
-        eggy.kill()
-
-#@slash.slash(name="survive",description="Sends survior guide by PM", guild_ids=guild_id)
-#@commands.cooldown(1,60,BucketType.user) #one use every 60 sec's by user
-#async def _survive(ctx:SlashContext):
-#    await ctx.author.send(file=File("PATH HERE"))
-
-@slash.slash(name="autobuilder",description="Creates a role, text channel, voice channel, post channel in Empresas",guild_ids=guild_id)
-@commands.has_permissions(administrator=True)
-async def _autobuilder(ctx:SlashContext,name):
+async def _autobuilder(ctx,name):
     await empresas.create(ctx,name)
 
+
+#####################
+# COMMANDS EMPRESAS #
+#####################
 
 ##################
 # EVENT LISTENER #
 ##################
 
 @client.event
-async def on_message(message):
-    if message.channel.id == 821134781839573032: #canal viveiro, se alguem escrever neste canal o ovo recebe x pontos
-        eggy.heat()
-
-@client.event
 async def on_member_join(member):
-    await member_join.welcome(member)    
+    await member_join.welcome(member)   
 
-@client.event
-async def on_component(ctx: ComponentContext):
-    if(ctx.custom_id == "matriculas"):
-        options =["1º ano","2º ano","3º ano","4º ano","5º ano"]
-        await autoroler.handler(ctx,options)
-        
-    if(ctx.custom_id == "atividades"):
-        options =["empresas","TaçaUa","aluvião","Antigo Aluno"]
-        await autoroler.handler(ctx,options)
-
-    if(ctx.custom_id == "info_roles"):
-        await ctx.edit_origin(content="Help Sent!") #must put in autoroler
-        await ctx.author.send(embed=autoroler.info())
-    
-    if(ctx.custom_id == "reset"):
-        await ctx.edit_origin(content="Reseted the roles!") #must put in autoroler
-        await autoroler.reset(ctx)
-
-
-client.run(code)
+client.run(CODE)

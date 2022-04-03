@@ -8,40 +8,25 @@
 - [Images](https://github.com/FJ-RATO/SlashConnecter#images)
 
 ## Installation
-1. Cria um ambiente virtual
+1. Correr o script fornecido
 ```
-python3 -m venv venv
+./start.sh
 ```
-2. Ativa o ambiente virtual
-```
-source venv/bin/activate
-```
-3. Instala os requisitos
-```
-pip install -r requirements.txt
-```
-
 ## Features
 
 - main.py
-    - Já não é preciso chamar o auto roler sempre que o bot vai abaixo  
     - Adicionado um on_component listener
     - Adicionado um greater que escuta o discord.member_join event
+    - Adicionado um comando para verificar a versão
     - Adicionado medidas de segurança a comandos administrativos
     - Adicionado medidas anti spam a comandos comunitarios
-    - Comando egg agora tem argumentos em vez de existir dois comandos separados
-    - Adicionado um comando para obter o guia de sobrevivencia
 
 - autoroler.py
     - Autoroler agora usa "fancy shiny buttons" (components)
     - Autoroler esta funcional para matriculas
     - Autoroler esta funcional para atividades
-    - Autoler agora tem um botão de help
-
-- eggy.py
-    - Adicionado um decorator task que cria um loop paralelo não bloqueante para executar o mini jogo
-    - Adicionado game status para evitar a criação de um comando status para demonstrar o estado do jogo
-    - Commando rub foi trocado por um listener no canal viveiro
+    - Autoroler agora tem um botão de help
+    - Autoroler já não necessita de ser inicializado sempre que o bot "morre"
 
 - member_join.py
     - Adicionado um greater para dar mais informação aos novos utilizadores
@@ -54,7 +39,8 @@ pip install -r requirements.txt
     - Todos os comandos passaram a ser separados do main.py para não o sobrecarregar em texto
 
 ## Programmer's note
-A implementação do member_join.py é permanente uma vez que o proprio discord vai implementar questionários de inscrição o que tornava a implemetação planeada irrelevante.
+Como o bot agora está num docker container, sempre que o host for a abaixo (falta de internet ou eletricidade), ao voltar a ter condições para funcionar o serviço tambem volta a ser incilizado.  
+
 
 ## Images
 
@@ -72,3 +58,8 @@ A implementação do member_join.py é permanente uma vez que o proprio discord 
 
 ### Status do jogo
 ![Status do jogo](https://i.imgur.com/Bxu0z74.png)
+
+## Future Work
+É do meu interesse criar uma maneira de gerar snapshots de um servidor permitindo recuperar de um ataque.
+Isto seria criando uma framework de onde o bot depois possa reconstruir todo o servidor.
+Não sei ainda como se faria para recuperar as mensagens.

@@ -1,24 +1,22 @@
-import discord
-from discord import message
-from discord.ext import commands
+import nextcord
 
 async def create(ctx,name):
 
     GUILD = ctx.guild
     ROLE = await GUILD.create_role(name=name)
-    CT = discord.utils.get(ctx.guild.roles, name="ct")
-    NEECT = discord.utils.get(ctx.guild.roles, name="NEECT")
+    CT = nextcord.utils.get(ctx.guild.roles, name="ct")
+    NEECT = nextcord.utils.get(ctx.guild.roles, name="NEECT")
 
     overwrites = {
-    GUILD.default_role: discord.PermissionOverwrite(read_messages=False),
-    ROLE: discord.PermissionOverwrite(read_messages=True),
-    CT: discord.PermissionOverwrite(read_messages=True)
+    GUILD.default_role: nextcord.PermissionOverwrite(read_messages=False),
+    ROLE: nextcord.PermissionOverwrite(read_messages=True),
+    CT: nextcord.PermissionOverwrite(read_messages=True)
     }
 
     overwrites_private= {
-    GUILD.default_role: discord.PermissionOverwrite(read_messages=False),
-    ROLE: discord.PermissionOverwrite(read_messages=True),
-    NEECT: discord.PermissionOverwrite(read_messages=True)
+    GUILD.default_role: nextcord.PermissionOverwrite(read_messages=False),
+    ROLE: nextcord.PermissionOverwrite(read_messages=True),
+    NEECT: nextcord.PermissionOverwrite(read_messages=True)
     }
     
     category = await GUILD.create_category_channel(name)
