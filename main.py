@@ -8,6 +8,7 @@ import autoroler
 import member_join
 import empresas
 import utils
+import market
 
 from secret import code as CODE
 from secret import servers as GUILD_IDS
@@ -32,9 +33,7 @@ async def on_ready():
 
     #reset the game
     try:
-        market_channel = client.get_channel()
-        await market_channel.purge(limit=1)
-        await market_channel.send("Autoroler Menu",view=autoroler.Menu())
+        market.init()
         print("Game reset: SUCCESS")
     except:
         print("Game reset: FAILED\n(Is the id channel correct?)\n")
