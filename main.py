@@ -78,9 +78,9 @@ async def _autobuilder(ctx,name):
 # MESSAGE COMMANDS #
 ####################
 
-#@client.message_command(name="test",guild_ids=GUILD_IDS)
-#async def _test(ctx,name):
-#    print("hello")
+@client.message_command(name="copy pasta",guild_ids=GUILD_IDS)
+async def _test(ctx,name):
+    await(ctx.author.send("copy pasta"))
 
 #####################
 # COMMANDS EMPRESAS #
