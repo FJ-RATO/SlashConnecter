@@ -81,9 +81,9 @@ def loop24():
         BOTES_PRICE = random.randrange(1,3) 
         DOGGOS_PRICE = random.randrange(200,450) 
         WEEBS_PRICE = random.randrange(5000,10000) 
-
+    NEECTCOIN_PRICE = (WEEBS_PRICE/STATE - (BOTES_PRICE + DOGGOS_PRICE)*STATE)
 #every 1h
 #update crypto price
 @tasks.loop(hours=1)
 def loop1():
-    NEECTCOIN_PRICE =  (WEEBS_PRICE/STATE - (BOTES_PRICE + DOGGOS_PRICE)*STATE)*0.1
+    NEECTCOIN_PRICE = random.randrange(int(NEECTCOIN_PRICE*0.05),int(NEECTCOIN_PRICE*0.3))
