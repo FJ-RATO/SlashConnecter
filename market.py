@@ -4,6 +4,10 @@ import random
 from nextcord.ext import commands,tasks
 from os.path import exists
 
+
+def init():
+    pass
+
 #checks if the player is already registerd if not registers
 async def register(ctx):
     path = "./save/"+str(ctx.author.id)
@@ -25,9 +29,6 @@ async def register(ctx):
         json.dump(body, file)
         file.close()
         await ctx.author.send(embed=status(ctx))
-
-def init():
-    pass
 
 
 async def _status(ctx):
@@ -64,7 +65,7 @@ WEEBS_PRICE = 99999
 STATE = 9
 
 @tasks.loop(hours=24)
-def loop24():
+async def loop24():
     STATE = random.randrange(1,3)
     # BOTES HIGH RISK HIGH REWARD
     # DOGGOS LOW PRICE STABLE
@@ -85,5 +86,5 @@ def loop24():
 #every 1h
 #update crypto price
 @tasks.loop(hours=1)
-def loop1():
+async def loop1():
     NEECTCOIN_PRICE = random.randrange(int(NEECTCOIN_PRICE*0.05),int(NEECTCOIN_PRICE*0.3))

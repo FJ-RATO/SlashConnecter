@@ -1,4 +1,5 @@
 import os
+from pickle import TRUE
 
 import nextcord
 from nextcord.ext import commands
@@ -56,9 +57,9 @@ async def _version(ctx):
 async def _tag(ctx, role):
     await utils._tag(ctx,role)
 
-@client.slash_command(name="game",description="Game handler, go to game channel for more ingo",guild_ids=GUILD_IDS)
-async def _game(ctx,option):
-    pass
+#@client.slash_command(name="game",description="Game handler, go to game channel for more ingo",guild_ids=GUILD_IDS)
+#async def _game(ctx,option):
+#    pass
 
 ##################
 # COMMANDS ADMIN #
@@ -77,10 +78,11 @@ async def _autobuilder(ctx,name):
 ####################
 # MESSAGE COMMANDS #
 ####################
-
-@client.message_command(name="copy pasta",guild_ids=GUILD_IDS)
-async def _test(ctx,name):
-    await(ctx.author.send("copy pasta"))
+@client.user_command(name="copy pasta",guild_ids=GUILD_IDS)
+#@client.message_command(name="copy pasta",guild_ids=GUILD_IDS)
+async def _test(interaction,message):
+    await message.send(f"{interaction.user.name} sent you some pasta <3")
+    await interaction.send(content="Pasta away",ephemeral=True)
 
 #####################
 # COMMANDS EMPRESAS #
