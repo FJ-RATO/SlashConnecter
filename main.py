@@ -47,11 +47,11 @@ async def on_ready():
 
 @client.slash_command(name="ping",description="Reply pong",guild_ids=GUILD_IDS)
 async def _ping(ctx):
-    await ctx.send(f"Pong! ({client.latency*1000}ms)")
+    await ctx.send(content=f"Pong! ({client.latency*1000}ms)",ephemeral=True)
 
 @client.slash_command(name="version",description="Returns the current version",guild_ids=GUILD_IDS)
 async def _version(ctx):
-    await ctx.send(f"Slashconnecter v2.0 Nextcord")
+    await ctx.send(content=f"Slashconnecter v2.0.1 Nextcord",ephemeral=True)
 
 @client.slash_command(name="tag",description="tags the role specificied in the arguemnt",guild_ids=GUILD_IDS)
 async def _tag(ctx, role):
@@ -74,13 +74,14 @@ async def _autoroler(ctx):
 @commands.has_permissions(administrator=True)
 async def _autobuilder(ctx,name):
     await empresas.create(ctx,name)
+    await ctx.send(content="All channels are ready",ephemeral=True)
 
 ####################
 # MESSAGE COMMANDS #
 ####################
 @client.user_command(name="copy pasta",guild_ids=GUILD_IDS)
 #@client.message_command(name="copy pasta",guild_ids=GUILD_IDS)
-async def _test(interaction,message):
+async def _copy_pasta(interaction,message):
     await message.send(f"{interaction.user.name} sent you some pasta <3")
     await interaction.send(content="Pasta away",ephemeral=True)
 
@@ -92,7 +93,7 @@ async def _test(interaction,message):
 # EVENT LISTENER #
 ##################
 
-@client.event
+@client.event()
 async def on_member_join(member):
     await member_join.welcome(member)   
 

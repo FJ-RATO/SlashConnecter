@@ -17,6 +17,8 @@ class Actividades(nextcord.ui.Select):
 
         for x in not_selected:
             await interaction.user.remove_roles(nextcord.utils.get(interaction.guild.roles, name=x)) #removeroles
+        
+        await interaction.send(content=f"Recebeste os seguintes roles {selected}",ephemeral=True)
 
 class Anos(nextcord.ui.Select):
     def __init__(self):
@@ -37,6 +39,8 @@ class Anos(nextcord.ui.Select):
         for x in not_selected:
             await interaction.user.remove_roles(nextcord.utils.get(interaction.guild.roles, name=x)) #removeroles
 
+        await interaction.send(content=f"Recebeste os seguintes roles {selected}",ephemeral=True)
+
 class Reset(nextcord.ui.Button):
     def __init__(self):
         super().__init__(custom_id= "autoroler_reset", label = "RESET", style = nextcord.ButtonStyle.red)
@@ -44,6 +48,7 @@ class Reset(nextcord.ui.Button):
         aux = ["1º ano","2º ano","3º ano","4º ano","5º ano","TaçaUa","aluvião","Antigo Aluno"]
         for x in aux:
             await interaction.user.remove_roles(nextcord.utils.get(interaction.guild.roles, name=x))
+        await interaction.send(content=f"Todos os roles foram retirados",ephemeral=True)
 
 class Help(nextcord.ui.Button):
     def __init__(self):
