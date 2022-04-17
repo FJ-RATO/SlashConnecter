@@ -57,9 +57,9 @@ async def _version(ctx):
 async def _tag(ctx, role):
     await utils._tag(ctx,role)
 
-#@client.slash_command(name="game",description="Game handler, go to game channel for more ingo",guild_ids=GUILD_IDS)
-#async def _game(ctx,option):
-#    pass
+@client.slash_command(name="game",description="Game handler, go to game channel for more ingo",guild_ids=GUILD_IDS)
+async def _game(ctx,option,stock,amount):
+    market.handler(ctx,option,stock,amount)
 
 ##################
 # COMMANDS ADMIN #

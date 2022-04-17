@@ -6,13 +6,26 @@ from os.path import exists
 
 
 def init():
-    pass
+    loop1()
+    loop24()
+
+def handler(ctx,option,stock,amount):
+    if option == "register":
+        register(ctx)
+    elif option == "status":
+        _status(ctx)
+    elif option == "buy":
+        pass
+    elif option == "sell":
+        pass
+    else:
+        pass
 
 #checks if the player is already registerd if not registers
 async def register(ctx):
     path = "./save/"+str(ctx.author.id)
     if(exists(path)):
-        await ctx.author.send("O teu id já existe na nossa base de dados.")
+        await ctx.author.send(content="O teu id já existe na nossa base de dados.",ephemeral=True)
     else:
         file=open(path,"w")
         body ={
@@ -28,11 +41,10 @@ async def register(ctx):
         }
         json.dump(body, file)
         file.close()
-        await ctx.author.send(embed=status(ctx))
-
+        await ctx.author.send(embed=status(ctx),ephemeral=True)
 
 async def _status(ctx):
-    ctx.author.send(embed=status(ctx))
+    ctx.author.send(embed=status(ctx),ephemeral=True)
 
 def status(ctx):
     status = read(ctx)
