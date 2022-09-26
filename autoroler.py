@@ -41,7 +41,7 @@ class Reset(nextcord.ui.Button):
     def __init__(self):
         super().__init__(custom_id= "autoroler_reset", label = "RESET", style = nextcord.ButtonStyle.red)
     async def callback(self, interaction:nextcord.Interaction):
-        aux = ["1º ano","2º ano","3º ano","4º ano","5º ano","TaçaUa","aluvião","Antigo Aluno"]
+        aux = ["1º ano","2º ano","3º ano","4º ano","5º ano","Taça UA","aluvião","Antigo Aluno"]
         for x in aux:
             await interaction.user.remove_roles(nextcord.utils.get(interaction.guild.roles, name=x))
 
