@@ -8,6 +8,7 @@ import autoroler
 import member_join
 import empresas
 import utils
+import right_click
 
 from secret import code as CODE
 from secret import servers as GUILD_IDS
@@ -62,6 +63,16 @@ async def _autobuilder(ctx,name):
 #####################
 # COMMANDS EMPRESAS #
 #####################
+
+###############
+# RIGHT CLICK #
+###############
+
+@client.user_command(name = "Posição de enchimento",guild_ids=GUILD_IDS)
+@commands.has_role("cf")
+async def _enchimento(ctx,target):
+    await target.send("tudo a encher")
+    await ctx.send(delete_after=3,content="posição de enchimento enviada")
 
 ##################
 # EVENT LISTENER #
