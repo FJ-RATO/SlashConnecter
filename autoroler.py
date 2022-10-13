@@ -1,3 +1,4 @@
+from calendar import different_locale
 from ssl import Options
 import nextcord
 
@@ -11,12 +12,19 @@ class Actividades(nextcord.ui.Select):
         super().__init__(placeholder="Escolhe os tuas atividades", min_values=1, max_values=3, options=actividades)
     async def callback(self, interaction: nextcord.Interaction):
         selected = self.values
+        dif_add = []
+        dif_remove = [] 
         for x in selected:
             await interaction.user.add_roles(nextcord.utils.get(interaction.guild.roles, name=x)) #add roles
+            dif_add.append(x)
+
         not_selected = [x.label for x in self.options if not x.label in selected]
 
         for x in not_selected:
             await interaction.user.remove_roles(nextcord.utils.get(interaction.guild.roles, name=x)) #removeroles
+            dif_remove.append(x)
+
+        await interaction.send(content=f"Roles added {dif_add}, roles removed {dif_remove}",ephemeral= True,delete_after=5)
 
 class Anos(nextcord.ui.Select):
     def __init__(self):
@@ -30,12 +38,18 @@ class Anos(nextcord.ui.Select):
         super().__init__(placeholder="Escolhe os teus anos", min_values=1, max_values=5, options=anos)
     async def callback(self, interaction: nextcord.Interaction):
         selected = self.values
+        dif_add = []
+        dif_remove = [] 
         for x in selected:
             await interaction.user.add_roles(nextcord.utils.get(interaction.guild.roles, name=x)) #add roles
+            dif_add.append(x)
         not_selected = [x.label for x in self.options if not x.label in selected]
 
         for x in not_selected:
             await interaction.user.remove_roles(nextcord.utils.get(interaction.guild.roles, name=x)) #removeroles
+            dif_remove.append(x)
+        
+        await interaction.send(content=f"Roles added {dif_add}, roles removed {dif_remove}",ephemeral= True,delete_after=5)
 
 class Reset(nextcord.ui.Button):
     def __init__(self):
