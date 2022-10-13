@@ -68,11 +68,10 @@ async def _autobuilder(ctx,name):
 # RIGHT CLICK #
 ###############
 
-@client.user_command(name = "Posição de enchimento",guild_ids=GUILD_IDS)
-@commands.has_role("cf")
-async def _enchimento(ctx,target):
-    await target.send("tudo a encher")
-    await ctx.send(delete_after=3,content="posição de enchimento enviada")
+@client.user_command(name = "Send test",guild_ids=GUILD_IDS)
+@commands.has_role("cf") #does this even work ?
+async def _test(ctx,user):
+    await right_click.test(ctx,user)
 
 ##################
 # EVENT LISTENER #
