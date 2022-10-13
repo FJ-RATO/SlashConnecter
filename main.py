@@ -8,6 +8,7 @@ import autoroler
 import member_join
 import empresas
 import utils
+import right_click
 
 from secret import code as CODE
 from secret import servers as GUILD_IDS
@@ -26,7 +27,7 @@ async def on_ready():
     await autoroler_channel.purge(limit=1)
     await autoroler_channel.send("Autoroler Menu",view=autoroler.Menu()) 
 
-    print("SlashConnecter is online \nVersion: 2.0.1 PRE-ALPHA")
+    print("SlashConnecter is online \nVersion: 2.0.2 ALPHA")
 
 ############
 # COMMANDS #
@@ -53,15 +54,27 @@ async def _tag(ctx, role):
 async def _autoroler(ctx):
     await ctx.send("Autoroler Menu",view=autoroler.Menu())
 
+#####################
+# COMMANDS EMPRESAS #
+#####################
+
 @client.slash_command(name="autobuilder",description="Creates a role, text channel, voice channel, post channel in Empresas",guild_ids=GUILD_IDS)
 @commands.has_permissions(administrator=True)
 async def _autobuilder(ctx,name):
     await empresas.create(ctx,name)
 
+###############
+# RIGHT CLICK #
+###############
 
-#####################
-# COMMANDS EMPRESAS #
-#####################
+@client.user_command(name = "Send test",guild_ids=GUILD_IDS) #right click on user
+@commands.has_role("cf") #does this even work ?
+async def _test(ctx,user):
+    await right_click.test(ctx,user)
+
+@client.message_command(name = "Send test",guild_ids=GUILD_IDS) #right click on message
+async def _test(ctx,user):
+    await right_click.test(ctx,user)
 
 ##################
 # EVENT LISTENER #
