@@ -78,7 +78,7 @@ async def _test(ctx,user):
 
 @client.user_command(name = "Join Super",guild_ids=GUILD_IDS)
 @commands.has_permissions(administrator=True)
-@commands.has_role("NEECT")
+@commands.has_role("SUPER")
 async def _super(ctx,user):
     await right_click.super_add(ctx,user)
 
