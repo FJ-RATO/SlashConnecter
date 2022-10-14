@@ -1,7 +1,7 @@
 import os
 
 import nextcord
-from nextcord.ext import commands
+from nextcord.ext import application_checks
 
 import autoroler
 # import eggy
@@ -50,7 +50,7 @@ async def _tag(ctx, role):
 ##################
 
 @client.slash_command(name="autoroler",description="Summons the auto roller post",guild_ids=GUILD_IDS)
-@commands.has_permissions(administrator=True)
+@application_checks.has_permissions(administrator=True)
 async def _autoroler(ctx):
     await ctx.send("Autoroler Menu",view=autoroler.Menu())
 
@@ -59,7 +59,7 @@ async def _autoroler(ctx):
 #####################
 
 @client.slash_command(name="autobuilder",description="Creates a role, text channel, voice channel, post channel in Empresas",guild_ids=GUILD_IDS)
-@commands.has_permissions(administrator=True)
+@application_checks.has_permissions(administrator=True)
 async def _autobuilder(ctx,name):
     await empresas.create(ctx,name)
 
@@ -67,22 +67,22 @@ async def _autobuilder(ctx,name):
 # RIGHT CLICK #
 ###############
 
-@client.user_command(name = "Send test",guild_ids=GUILD_IDS) #right click on user
-@commands.has_role("cf") #does this even work ?
+@client.user_command(name = "Send Debug",guild_ids=GUILD_IDS) #right click on user
 async def _test(ctx,user):
     await right_click.test(ctx,user)
 
-# @client.user_command(name = "Join Super",guild_ids=GUILD_IDS)
-# @commands.has_permissions(administrator=True)
-# @commands.has_role("SUPER")
-# async def _super(ctx,user):
-# await right_click.super_add(ctx,user)
+@client.user_command(name = "Join Super",guild_ids=GUILD_IDS)
+@application_checks.has_permissions(administrator=True)
+@application_checks.has_role("SUPER")
+async def _super(ctx,user):
+    await right_click.super_add(ctx,user)
 
-# @client.user_command(name = "Kick Super",guild_ids=GUILD_IDS)
-# @commands.has_permissions(administrator=True)
-# @commands.has_role("SUPER")
-# async def _unsuper(ctx,user):
-# await right_click.super_remove(ctx,user)
+@client.user_command(name = "Kick Super",guild_ids=GUILD_IDS)
+@application_checks.has_permissions(administrator=True)
+@application_checks.has_role("SUPER")
+async def _unsuper(ctx,user):
+    await right_click.super_remove(ctx,user)
+
 
 ##################
 # EVENT LISTENER #

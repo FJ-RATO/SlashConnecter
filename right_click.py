@@ -1,8 +1,8 @@
 import nextcord
 
 async def test(ctx,user):
-    await user.send("test target")
-    await ctx.send(delete_after=3,content="test sent")
+    print(f"roles: {user.roles}")
+    print(f"permissions: {user.guild_permissions}")
 
 async def super_add(ctx,user):
     super_role = nextcord.utils.get(ctx.guild.roles, name="SUPER")
