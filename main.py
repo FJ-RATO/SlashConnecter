@@ -4,7 +4,7 @@ import nextcord
 from nextcord.ext import application_checks
 
 import autoroler
-# import eggy
+import cf
 import member_join
 import empresas
 import utils
@@ -45,6 +45,10 @@ async def _version(ctx):
 async def _tag(ctx, role):
     await utils._tag(ctx,role)
 
+@client.user_command(name = "Send Debug",guild_ids=GUILD_IDS) #right click on user
+async def _test(ctx,user):
+    await right_click.test(ctx,user)
+
 ##################
 # COMMANDS ADMIN #
 ##################
@@ -53,23 +57,6 @@ async def _tag(ctx, role):
 @application_checks.has_permissions(administrator=True)
 async def _autoroler(ctx):
     await ctx.send("Autoroler Menu",view=autoroler.Menu())
-
-#####################
-# COMMANDS EMPRESAS #
-#####################
-
-@client.slash_command(name="autobuilder",description="Creates a role, text channel, voice channel, post channel in Empresas",guild_ids=GUILD_IDS)
-@application_checks.has_permissions(administrator=True)
-async def _autobuilder(ctx,name):
-    await empresas.create(ctx,name)
-
-###############
-# RIGHT CLICK #
-###############
-
-@client.user_command(name = "Send Debug",guild_ids=GUILD_IDS) #right click on user
-async def _test(ctx,user):
-    await right_click.test(ctx,user)
 
 @client.user_command(name = "Join Super",guild_ids=GUILD_IDS)
 @application_checks.has_permissions(administrator=True)
@@ -83,6 +70,23 @@ async def _super(ctx,user):
 async def _unsuper(ctx,user):
     await right_click.super_remove(ctx,user)
 
+#####################
+# COMMANDS EMPRESAS #
+#####################
+
+@client.slash_command(name="autobuilder",description="Creates a role, text channel, voice channel, post channel in Empresas",guild_ids=GUILD_IDS)
+@application_checks.has_permissions(administrator=True)
+async def _autobuilder(ctx,name):
+    await empresas.create(ctx,name)
+
+######
+# CF #
+######
+
+@client.slash_command(name="caderno",description="ADD & SUB traços from the caderno",guild_ids=GUILD_IDS)
+@application_checks.has_role("CF")
+async def _caderno(ctx,command,amount):
+    await cf.caderno(ctx,command,amount)
 
 ##################
 # EVENT LISTENER #
