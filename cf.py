@@ -42,3 +42,15 @@ async def caderno(ctx,command,amount):
         await ctx.send(f"Caderno updated, agora tem {total} traços",ephemeral= True)
     else:
         await ctx.send(f"Wrong argumnet, the valid arguments are ADD or SUB (in any case)",ephemeral= True)
+
+async def add_aluvião(ctx,user):
+    aluviao = nextcord.utils.get(ctx.guild.roles, name="aluvião")
+    await user.add_roles(aluviao)
+    await ctx.send(f"{user.display_name} is now a aluvião user",ephemeral= True)
+
+async def add_veterano(ctx,user):
+    veterano = nextcord.utils.get(ctx.guild.roles, name="veterano")
+    aluviao = nextcord.utils.get(ctx.guild.roles, name="aluvião")
+    await user.remove_roles(aluviao)
+    await user.add_roles(veterano)
+    await ctx.send(f"{user.display_name} is now a veterano user",ephemeral= True)

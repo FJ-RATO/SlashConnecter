@@ -58,13 +58,13 @@ async def _test(ctx,user):
 async def _autoroler(ctx):
     await ctx.send("Autoroler Menu",view=autoroler.Menu())
 
-@client.user_command(name = "Join Super",guild_ids=GUILD_IDS)
+@client.user_command(name = "Update to Super",guild_ids=GUILD_IDS)
 @application_checks.has_permissions(administrator=True)
 @application_checks.has_role("SUPER")
 async def _super(ctx,user):
     await right_click.super_add(ctx,user)
 
-@client.user_command(name = "Kick Super",guild_ids=GUILD_IDS)
+@client.user_command(name = "Remove from Super",guild_ids=GUILD_IDS)
 @application_checks.has_permissions(administrator=True)
 @application_checks.has_role("SUPER")
 async def _unsuper(ctx,user):
@@ -88,6 +88,15 @@ async def _autobuilder(ctx,name):
 async def _caderno(ctx,command,amount):
     await cf.caderno(ctx,command,amount)
 
+@client.user_command(name = "Update to Aluvião",guild_ids=GUILD_IDS) #right click on user
+@application_checks.has_role("CF")
+async def _add_aluvião(ctx,user):
+    await cf.add_aluvião(ctx,user)
+
+@client.user_command(name = "Update to Veterano",guild_ids=GUILD_IDS) #right click on user
+@application_checks.has_role("CF")
+async def _add_veterano(ctx,user):
+    await cf.add_veterano(ctx,user)
 ##################
 # EVENT LISTENER #
 ##################
