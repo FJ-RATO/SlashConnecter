@@ -4,7 +4,7 @@ import nextcord
 from nextcord.ext import application_checks
 
 import autoroler
-# import eggy
+import cf
 import member_join
 import empresas
 import utils
@@ -45,6 +45,10 @@ async def _version(ctx):
 async def _tag(ctx, role):
     await utils._tag(ctx,role)
 
+@client.user_command(name = "Send Debug",guild_ids=GUILD_IDS) #right click on user
+async def _test(ctx,user):
+    await right_click.test(ctx,user)
+
 ##################
 # COMMANDS ADMIN #
 ##################
@@ -53,6 +57,18 @@ async def _tag(ctx, role):
 @application_checks.has_permissions(administrator=True)
 async def _autoroler(ctx):
     await ctx.send("Autoroler Menu",view=autoroler.Menu())
+
+@client.user_command(name = "Update to Super",guild_ids=GUILD_IDS)
+@application_checks.has_permissions(administrator=True)
+@application_checks.has_role("SUPER")
+async def _super(ctx,user):
+    await right_click.super_add(ctx,user)
+
+@client.user_command(name = "Remove from Super",guild_ids=GUILD_IDS)
+@application_checks.has_permissions(administrator=True)
+@application_checks.has_role("SUPER")
+async def _unsuper(ctx,user):
+    await right_click.super_remove(ctx,user)
 
 #####################
 # COMMANDS EMPRESAS #
@@ -63,27 +79,24 @@ async def _autoroler(ctx):
 async def _autobuilder(ctx,name):
     await empresas.create(ctx,name)
 
-###############
-# RIGHT CLICK #
-###############
+######
+# CF #
+######
 
-@client.user_command(name = "Send Debug",guild_ids=GUILD_IDS) #right click on user
-async def _test(ctx,user):
-    await right_click.test(ctx,user)
+@client.slash_command(name="caderno",description="ADD & SUB traços from the caderno",guild_ids=GUILD_IDS)
+@application_checks.has_role("CF")
+async def _caderno(ctx,command,amount):
+    await cf.caderno(ctx,command,amount)
 
-@client.user_command(name = "Join Super",guild_ids=GUILD_IDS)
-@application_checks.has_permissions(administrator=True)
-@application_checks.has_role("SUPER")
-async def _super(ctx,user):
-    await right_click.super_add(ctx,user)
+@client.user_command(name = "Update to Aluvião",guild_ids=GUILD_IDS) #right click on user
+@application_checks.has_role("CF")
+async def _add_aluvião(ctx,user):
+    await cf.add_aluvião(ctx,user)
 
-@client.user_command(name = "Kick Super",guild_ids=GUILD_IDS)
-@application_checks.has_permissions(administrator=True)
-@application_checks.has_role("SUPER")
-async def _unsuper(ctx,user):
-    await right_click.super_remove(ctx,user)
-
-
+@client.user_command(name = "Update to Veterano",guild_ids=GUILD_IDS) #right click on user
+@application_checks.has_role("CF")
+async def _add_veterano(ctx,user):
+    await cf.add_veterano(ctx,user)
 ##################
 # EVENT LISTENER #
 ##################
