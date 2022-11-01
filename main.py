@@ -27,7 +27,7 @@ async def on_ready():
     await autoroler_channel.purge(limit=1)
     await autoroler_channel.send("Autoroler Menu",view=autoroler.Menu()) 
 
-    print("SlashConnecter is online \nVersion: 2.1.0 ALPHA")
+    print("SlashConnecter is online \nVersion: 2.2.0 ALPHA")
 
 ############
 # COMMANDS #
@@ -39,7 +39,7 @@ async def _ping(ctx):
 
 @client.slash_command(name="version",description="Returns the current version",guild_ids=GUILD_IDS)
 async def _version(ctx):
-    await ctx.send(f"Slashconnecter v2.0 Nextcord")
+    await ctx.send(f"Slashconnecter v2.2.0 ALPHA [CF UPDATE]")
 
 @client.slash_command(name="tag",description="tags the role specificied in the arguemnt",guild_ids=GUILD_IDS)
 async def _tag(ctx, role):
